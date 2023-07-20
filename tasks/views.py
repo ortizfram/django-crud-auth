@@ -16,7 +16,7 @@ def signup(request):
         return render(request, "signup.html", {"form": UserCreationForm})
     else:
         # if same password Register User
-        if request.POST["password1"] == request.POST["password1"]:
+        if request.POST["password1"] == request.POST["password2"]:
             try:
                 user = User.objects.create_user(
                     username=request.POST["username"],
