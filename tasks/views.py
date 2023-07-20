@@ -18,14 +18,13 @@ def signup(request):
         # if same password Register User
         if request.POST["password1"] == request.POST["password1"]:
             try:
-                User.objects.create_user(
+                user = User.objects.create_user(
                     username=request.POST["username"],
-                    password=request.POST["password2"],
+                    password=request.POST["password1"],
                 )
-                User.save()
+                user.save()
                 return HttpResponse("User created successfully!")
             except:
                 return HttpResponse("Username already exists")
-        else:
-            # send error message: httpResponse
-            return HttpResponse("Password do not match")
+        # send error message: httpResponse
+        return HttpResponse("Password do not match")
