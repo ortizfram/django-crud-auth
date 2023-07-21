@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.db import IntegrityError
 
 
 # exe smt when URL is visited
@@ -23,14 +24,22 @@ def signup(request):
                     password=request.POST["password1"],
                 )
                 user.save()
-                return HttpResponse("User created successfully!")
-            except:
+                login(request, user)
+                return redirect("tasks")
+            # User already exists
+            except IntegrityError:
                 return render(
-                    request, "signup.html", {"error": "Username already exists"}
+                    request,
+                    "signup.html",
+                    {"form": UserCreationForm, "error": "Username already exists"},
                 )
-        # send error message: httpResponse
+        # password does not match
         return render(
             request,
             "signup.html",
             {"form": UserCreationForm, "error": "Password do not match"},
         )
+
+
+def tasks(request):
+    return render(request, "tasks.html")
