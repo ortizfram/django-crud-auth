@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-
+from .forms import TaskForm
 
 # exe smt when URL is visited
 def home(request):
@@ -45,7 +45,20 @@ def tasks(request):
     return render(request, "tasks.html")
 
 def create_task(request):
-    return render(request, 'create_task.html')
+    # return creation form
+    if request.method == 'GET':
+        return render(request, 'create_task.html', {
+        'form': TaskForm
+        })
+    # save task, redirect
+    else:
+        form = TaskForm(request.POST)
+        new_task = form.save(commit=False)
+        new_task.user = request.user
+        new_task.save()
+        return redirect("tasks")
+        
+
 
 def signout(request):
     logout(request)
