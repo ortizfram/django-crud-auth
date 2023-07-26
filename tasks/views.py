@@ -74,4 +74,4 @@ def signin(request):
             login(request, user)
             return redirect("tasks")
 
-        return render(request, "signin.html", {"form": AuthenticationForm})
+        
