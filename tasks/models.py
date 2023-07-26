@@ -9,3 +9,7 @@ class Task(models.Model):
     datecompleted= models.DateTimeField(null=True)
     important = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # To see tasks titles in admin ORM 
+    def __str__(self):
+        return self.title
