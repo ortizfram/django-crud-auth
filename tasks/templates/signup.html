@@ -1,16 +1,36 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>Sign Up</h1>
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form method="POST" class="card card-body ">
+                <h1 class="text-center">Sign Up</h1>
 
-{{error}}
+                {{error}}
+                {% csrf_token %}
+                <!-- this form comes from views import -->
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" class="form-control" id="username"
+                        placeholder="Write your username">
+                </div>
+                <div class="mb-3">
+                    <label for="password1">Password:</label>
+                    <input type="password" name="password1" class="form-control" id="password1"
+                        placeholder="Write your password">
+                </div>
+                <div class="mb-3">
+                    <label for="password2">Confirm Password:</label>
+                    <input type="password" name="password2" class="form-control" id="password2"
+                        placeholder="Confirm your password">
+                </div>
 
-<form method="POST">
-    {% csrf_token %}
-    <!-- this form comes from views import -->
-    {{form.as_p}}
-    <button>
-        Signup
-    </button>
-</form>
+                <button class="btn btn-primary">
+                    Signup
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
 {% endblock %}

@@ -1,16 +1,32 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>Login</h1>
+<main class="container">
+    <div class="row">
+        <section class="col-md-4 offset-md-4">
+            <form action="/signin/" method="POST" class="card card-body">
+                <h1 class="text-center">Sign In</h1>
 
-{{error}}
+                {{error}}
+                {% csrf_token %}
+                <!-- this form comes from views import -->
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" class="form-control" id="username"
+                        placeholder="Write your username">
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" class="form-control" id="password"
+                        placeholder="Write your password">
+                </div>
 
-<form action="/signin/" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Signin
-    </button>
-</form>
+                <button class="btn btn-primary">
+                    Signin
+                </button>
+            </form>
+        </section>
+    </div>
+</main>
 
 {% endblock %}
