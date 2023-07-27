@@ -14,7 +14,10 @@
                 <!-- if user is authenticated, show logout, else show signup -->
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/tasks">Tasks</a>
+                    <a class="nav-link" href="{% url 'tasks' %}">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tasks_completed' %}">Tasks Completed</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/tasks/create/">Create Task</a>

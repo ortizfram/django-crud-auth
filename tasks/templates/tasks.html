@@ -11,12 +11,14 @@
             <strong>
                 {{task.title}}
             </strong>
+            <p>{{task.datecompleted|date:'j M Y'}}</p>
             {% else %}
             {{task.title}}
             {% endif %}
             <p>{{task.description}}</p>
             <p>{{task.user.username}}</p>
             <p>{{task.important}}</p>
+
         </a>
     </li>
     {% endfor %}
