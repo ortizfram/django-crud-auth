@@ -1,9 +1,11 @@
 {% extends 'layout.html' %}
 
+{% load static %}
+
 {% block content %}
 <main class="container">
     <section class="card card-body">
-        <h1 class="display-1 text-center">HOME</h1>
+        <h1 class="display-1 text-center custom-font">Tight Notes</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit neque, iure iusto libero quas dolor
             excepturi
             modi
@@ -20,8 +22,12 @@
             reprehenderit dolorum cum exercitationem voluptate tenetur deleniti voluptatum pariatur voluptas ab eaque?
         </p>
         <div class="text-center">
-            <a class="btn btn-secondary" href="/signin">Signin</a>
+            {% if request.user.is_authenticated %}
+            <a class="btn btn-secondary" href="/logout">Signout</a>
+            {% else %}
+            <a class="btn btn-secondary" href="/signin">Login</a>
             <a class="btn btn-dark" href="/signup">Signup</a>
+            {% endif %}
         </div>
     </section>
 </main>
