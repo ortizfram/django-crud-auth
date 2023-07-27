@@ -3,7 +3,14 @@
 {% block content %}
 
 <h1>{{task.title}}</h1>
-<p>{{task.description}}</p>
-<p>{{task.user.username}}</p>
-<p>{{task.important}}</p>
+
+{{error}}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Update
+    </button>
+</form>
 {% endblock %}
